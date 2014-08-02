@@ -2,6 +2,6 @@ extern crate underscore;
 
 #[test]
 fn test_hello() {
-    let ret = U::hello();
-    assert_eq!(1i, ret);
+    let __ = underscore::U;
+    assert_eq!(1i, __.hello());
 }
