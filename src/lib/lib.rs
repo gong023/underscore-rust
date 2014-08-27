@@ -9,11 +9,11 @@ impl U {
         1i
     }
 
-//    pub fn first<T>(self, arr: &[T]) -> Option<&T> {
-//        arr.get(0u)
-//    }
+    pub fn first<'a, T>(self, v: &'a Vec<T>) -> &'a T {
+        v.get(0)
+    }
 
-    pub fn first(self, arr: &[int]) -> int {
-        arr[0]
+    pub fn last<'a, T>(self, v: &'a Vec<T>) -> &'a T {
+        v.last()
     }
 }
