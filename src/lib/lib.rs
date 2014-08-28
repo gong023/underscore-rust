@@ -14,6 +14,7 @@ impl U {
     }
 
     pub fn last<'a, T>(self, v: &'a Vec<T>) -> &'a T {
-        v.last()
+        let length = v.len();
+        v.get(length - 1u)
     }
 }
