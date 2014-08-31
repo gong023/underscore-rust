@@ -85,3 +85,14 @@ fn test_vec_without() {
         assert_eq!("bb", **x);
     }
 }
+
+#[test]
+fn test_vec_union() {
+    let __ = underscore::Vect;
+
+    let union_int_vec = __.union(&vec!(1i, 2i, 3i), &vec!(4i, 5i, 6i));
+    assert_eq!(vec!(1i, 2, 3, 4, 5, 6), union_int_vec);
+
+    let union_str_vec = __.union(&vec!("aa", "bb"), &vec!("cc", "dd"));
+    assert_eq!(vec!("aa", "bb", "cc", "dd"), union_str_vec);
+}

@@ -33,7 +33,7 @@ impl Vect {
         return rest;
     }
 
-    pub fn exists<T: std::cmp::PartialEq>(self, x: &T, v: &Vec<T>) -> bool {
+    pub fn exists<T: PartialEq>(self, x: &T, v: &Vec<T>) -> bool {
         for element in v.iter() {
             if element.eq(x) { return true; }
         }
@@ -41,7 +41,7 @@ impl Vect {
         return false;
     }
 
-    pub fn without<'a, T: std::cmp::PartialEq>(self, v: &'a Vec<T>, values: &Vec<T>) -> Vec<&'a T> {
+    pub fn without<'a, T: PartialEq>(self, v: &'a Vec<T>, values: &Vec<T>) -> Vec<&'a T> {
         let mut without_elements = Vec::new();
         for element in v.iter() {
             if ! self.exists(element, values) {
@@ -50,5 +50,9 @@ impl Vect {
         }
 
         return without_elements;
+    }
+
+    pub fn union<T: Clone>(self, origin: &Vec<T>, adds: &Vec<T>) -> Vec<T> {
+        origin.add(adds)
     }
 }
