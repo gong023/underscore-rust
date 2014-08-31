@@ -32,4 +32,12 @@ impl Vect {
 
         return rest;
     }
+
+    pub fn exists<T1: std::cmp::PartialEq>(self, x: &T1, v: Vec<T1>) -> bool {
+        for element in v.iter() {
+            if element.eq(x) { return true; }
+        }
+
+        return false;
+    }
 }

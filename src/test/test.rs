@@ -57,3 +57,14 @@ fn test_vec_rest() {
         assert_eq!("cc", **x);
     }
 }
+
+#[test]
+fn test_vec_exists() {
+    let __ = underscore::Vect;
+
+    let vec_int = vec!(1i, 2i, 3i);
+    assert!(__.exists::<int>(&1i, vec_int));
+
+    let vec_str = vec!("aa", "bb", "cc");
+    assert!(__.exists::<&str>(&"aa", vec_str));
+}
