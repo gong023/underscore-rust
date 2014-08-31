@@ -63,8 +63,25 @@ fn test_vec_exists() {
     let __ = underscore::Vect;
 
     let vec_int = vec!(1i, 2i, 3i);
-    assert!(__.exists::<int>(&1i, vec_int));
+    assert!(__.exists::<int>(&1i, &vec_int));
 
     let vec_str = vec!("aa", "bb", "cc");
-    assert!(__.exists::<&str>(&"aa", vec_str));
+    assert!(__.exists::<&str>(&"aa", &vec_str));
+}
+
+#[test]
+fn test_vec_without() {
+    let __ = underscore::Vect;
+
+    let vec_int = vec!(1i, 2i, 2i);
+    let without_vec = __.without(&vec_int, &vec!(1i));
+    for x in without_vec.iter() {
+        assert_eq!(2i, **x);
+    }
+
+    let vec_str = vec!("aa", "bb", "bb", "cc");
+    let without_vec_str = __.without(&vec_str, &vec!("aa", "cc"));
+    for x in without_vec_str.iter() {
+        assert_eq!("bb", **x);
+    }
 }
