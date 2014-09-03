@@ -96,3 +96,14 @@ fn test_vec_union() {
     let union_str_vec = __.union(&vec!("aa", "bb"), &vec!("cc", "dd"));
     assert_eq!(vec!("aa", "bb", "cc", "dd"), union_str_vec);
 }
+
+#[test]
+fn test_vec_intersection() {
+    let __ = underscore::Vect;
+
+    let vec_int = vec!(1i, 2, 3);
+    let intersect_int_vec = __.intersection(&vec_int, &vec!(2i, 4));
+    for x in intersect_int_vec.iter() {
+        assert_eq!(2i, **x);
+    }
+}
