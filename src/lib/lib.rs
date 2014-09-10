@@ -65,13 +65,13 @@ impl Vect {
         return intersected;
     }
 
-//    pub fn inte<'a, T: Clone + PartialEq>(self, v1: &Vec<T>, v2: &Vec<T>) -> Vec<T> {
-//        let c_v1 = v1.clone();
-//        let mut intersected = Vec::new();
-//
-//        for element in c_v1.iter() {
-//            if self.exists(element, v2) { intersected.push(element) }
-//        }
-//        return intersected;
-//    }
+    pub fn uniq<'a, T: PartialEq + Clone>(self, v: &'a Vec<T>) -> Vec<&'a T> {
+        let mut uniq = Vec::new();
+        let vv = v.clone();
+        for element in v.iter() {
+            if ! self.exists(element, &vv)  { uniq.push(element) }
+        }
+
+        return uniq;
+    }
 }
