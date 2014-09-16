@@ -113,8 +113,8 @@ fn test_vec_uniq() {
     let __ = underscore::Vect;
 
     let vec_int = vec!(0u, 1, 1, 2, 2, 3);
-    let uniq_int_vec = __.uniq(&vec_int);
+    let uniq_int_vec = __.uniq(vec_int);
     for i in range(0u, 3) {
-        assert_eq!(i, **uniq_int_vec.get(i));
+        assert_eq!(i, *uniq_int_vec.get(i));
     }
 }

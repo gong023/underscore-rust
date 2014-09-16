@@ -62,11 +62,10 @@ impl Vect {
         return intersected;
     }
 
-    pub fn uniq<'a, T: PartialEq + Clone>(self, v: &'a Vec<T>) -> Vec<&'a T> {
+    pub fn uniq<T: PartialEq>(self, v: Vec<T>) -> Vec<T> {
         let mut uniq = Vec::new();
-        let vv = v.clone();
-        for element in v.iter() {
-            if ! self.exists(element, &vv)  { uniq.push(element) }
+        for element in v.move_iter() {
+            if ! self.exists(&element, &uniq)  { uniq.push(element) }
         }
 
         return uniq;
