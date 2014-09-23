@@ -2,7 +2,7 @@ extern crate underscore;
 
 #[test]
 fn test_vec_first() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
     let vec_int = vec!(1i, 2i, 3i);
     let first_int = __.first(&vec_int);
     let vec_str = vec!("aa", "bb", "cc");
@@ -14,7 +14,7 @@ fn test_vec_first() {
 
 #[test]
 fn test_vec_last() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
     let vec_int = vec!(1i, 2i, 3i);
     let last_int = __.last(&vec_int);
     let vec_str = vec!("aa", "bb", "cc");
@@ -26,7 +26,7 @@ fn test_vec_last() {
 
 #[test]
 fn test_vec_initial() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
 
     let vec_int = vec!(1i, 1i, 2i);
     let initial_vec = __.initial(&vec_int, 2u);
@@ -43,7 +43,7 @@ fn test_vec_initial() {
 
 #[test]
 fn test_vec_rest() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
 
     let vec_int = vec!(1i, 2i, 3i, 3i);
     let rest_vec = __.rest(&vec_int, 2u);
@@ -60,7 +60,7 @@ fn test_vec_rest() {
 
 #[test]
 fn test_vec_exists() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
 
     let vec_int = vec!(1i, 2i, 3i);
     assert!(__.exists::<int>(&1i, &vec_int));
@@ -71,7 +71,7 @@ fn test_vec_exists() {
 
 #[test]
 fn test_vec_without() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
 
     let vec_int = vec!(1i, 2i, 2i);
     let without_vec = __.without(&vec_int, &vec!(1i));
@@ -88,7 +88,7 @@ fn test_vec_without() {
 
 #[test]
 fn test_vec_union() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
 
     let union_int_vec = __.union(&vec!(1i, 2i, 3i), &vec!(4i, 5i, 6i));
     assert_eq!(vec!(1i, 2, 3, 4, 5, 6), union_int_vec);
@@ -99,7 +99,7 @@ fn test_vec_union() {
 
 #[test]
 fn test_vec_intersection() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
 
     let vec_int = vec!(1i, 2, 3);
     let intersect_int_vec = __.intersection(&vec_int, &vec!(2i, 4));
@@ -110,7 +110,7 @@ fn test_vec_intersection() {
 
 #[test]
 fn test_vec_uniq() {
-    let __ = underscore::Vect;
+    let __ = underscore::collection::Vect;
 
     let vec_int = vec!(0u, 1, 1, 2, 2, 3);
     let uniq_int_vec = __.uniq(vec_int);
