@@ -1,4 +1,5 @@
 pub struct Vect;
+pub struct Iter;
 
 impl Vect {
     pub fn first<'a, T>(self, v: &'a Vec<T>) -> &'a T {
@@ -67,5 +68,18 @@ impl Vect {
         }
 
         return uniq;
+    }
+}
+
+impl Iter {
+    pub fn each<'a, T>(self, v: &'a Vec<T>, func: |x: &'a T, index: uint|) {
+        let mut i = 0u;
+        loop {
+            match i <= v.len() {
+                true  => func(&v[i], i),
+                false => break
+            }
+            i += 1;
+        }
     }
 }
