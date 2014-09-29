@@ -70,4 +70,5 @@ fn test_vec_uniq() {
     let vec_int = __::Vect::new(vec!(0u, 1, 1, 2, 2, 3));
     assert_eq!(0u, *vec_int.uniq()[0]);
     assert_eq!(1u, *vec_int.uniq()[1]);
+    assert_eq!(4u, vec_int.uniq().len());
 }
