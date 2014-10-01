@@ -1,5 +1,7 @@
 #![crate_type="lib"]
 
+pub mod hashmap;
+
 pub struct Vect<T> {
     x: Vec<T>
 }

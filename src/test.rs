@@ -1,5 +1,7 @@
 extern crate __;
 
+use std::collections::HashMap;
+
 #[test]
 fn test_vec_first() {
     assert_eq!(1i, *__::Vect::new(vec!(1i, 2, 3)).first());
@@ -71,4 +73,15 @@ fn test_vec_uniq() {
     assert_eq!(0u, *vec_int.uniq()[0]);
     assert_eq!(1u, *vec_int.uniq()[1]);
     assert_eq!(4u, vec_int.uniq().len());
+}
+
+#[test]
+fn test_hash_pairs() {
+    let mut sample = HashMap::new();
+    sample.insert(1i, 1u);
+    sample.insert(2i, 2u);
+    let pairs = __::hashmap::Hashing.pairs(&sample);
+
+    assert_eq!((&1i, &1u), pairs[0]);
+    assert_eq!((&2i, &2u), pairs[1]);
 }
