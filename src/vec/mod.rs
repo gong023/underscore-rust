@@ -1,12 +1,6 @@
-#![crate_type="lib"]
 pub struct Vect<T> {
     x: Vec<T>
 }
-
-pub mod hashmap;
-pub mod vec;
-
-pub struct Iter;
 
 impl<'a, T: PartialEq + Clone> Vect<T> {
     pub fn new(v: Vec<T>) -> Vect<T> {
@@ -83,15 +77,3 @@ impl<'a, T: PartialEq + Clone> Vect<T> {
     }
 }
 
-impl Iter {
-    pub fn each<'a, T>(self, v: &'a Vec<T>, func: |x: &'a T, index: uint|) {
-        let mut i = 0u;
-        loop {
-            match i <= v.len() {
-                true  => func(&v[i], i),
-                false => break
-            }
-            i += 1;
-        }
-    }
-}
