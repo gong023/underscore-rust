@@ -75,6 +75,7 @@ help:
 	$(Q)echo "make test              - Tests library internally and externally"
 	$(Q)echo "make test-internal     - Tests library internally"
 	$(Q)echo "make test-external     - Tests library externally"
+	$(Q)echo "make test-simple       - sometime 'make test' fails..."
 	$(Q)echo "make bench             - Benchmarks library internally and externally"
 	$(Q)echo "make bench-internal    - Benchmarks library internally"
 	$(Q)echo "make bench-external    - Benchmarks library externally"
@@ -119,6 +120,7 @@ help:
 		test \
 		test-internal \
 	    test-external \
+		test-simple \
 		watch
 
 nightly-install:
@@ -233,6 +235,9 @@ test-internal: $(EXE_DIR)/test-internal
 $(EXE_DIR)/test-internal: $(SOURCE_FILES) | lib src/ $(EXE_DIR)/
 	$(Q)$(COMPILER) --target "$(TARGET)" $(COMPILER_FLAGS) --test $(LIB_ENTRY_FILE) -o "$(EXE_DIR)/test-internal" -L "$(TARGET_LIB_DIR)" -L "target" \
 	&& echo "--- Built internal test runner"
+
+test-simple:
+	$(Q)$(COMPILER) --test src/test.rs -o "bin/test-simple" -L target/deps -L "target" && $(EXE_DIR)/test-simple
 
 bench: bench-internal bench-external
 

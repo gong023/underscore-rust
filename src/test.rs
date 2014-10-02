@@ -80,8 +80,19 @@ fn test_hash_pairs() {
     let mut sample = HashMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
-    let pairs = __::hashmap::Hashing.pairs(&sample);
+    let pairs = __::hashmap::Hashing::new(sample).pairs();
 
-    assert_eq!((&1i, &1u), pairs[0]);
-    assert_eq!((&2i, &2u), pairs[1]);
+    assert_eq!((1i, 1u), pairs[0]);
+    assert_eq!((2i, 2u), pairs[1]);
+}
+
+#[test]
+fn test_hash_invert() {
+    let mut sample = HashMap::new();
+    sample.insert(1i, 1u);
+    sample.insert(2i, 2u);
+
+    let inverted = __::hashmap::Hashing::new(sample).invert();
+    assert!(inverted.contains_key(&1u));
+    assert!(inverted.contains_key(&2u));
 }
