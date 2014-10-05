@@ -9,34 +9,6 @@ fn test_vec_first() {
 }
 
 #[test]
-fn test_vec_last() {
-    assert_eq!(3i, *__::vec::Vect::new(vec!(1i, 2, 3)).last());
-    assert_eq!("bb", *__::vec::Vect::new(vec!("aa", "bb")).last())
-}
-
-#[test]
-fn test_vec_initial() {
-    let vec_int = vec!(1i, 1i, 2i);
-    for x in __::vec::Vect::new(vec_int).initial(2u).iter() {
-        assert_eq!(1i, **x)
-    }
-
-    let vec_str = vec!("aa", "aa", "bb");
-    assert_eq!(2u, __::vec::Vect::new(vec_str).initial(2u).len());
-}
-
-#[test]
-fn test_vec_rest() {
-    let vec_int = vec!(1i, 2i, 3i, 3i);
-    for x in __::vec::Vect::new(vec_int).rest(2u).iter() {
-        assert_eq!(3i, **x);
-    }
-
-    let vec_str = vec!("aa", "bb", "cc", "cc");
-    assert_eq!(2u, __::vec::Vect::new(vec_str).rest(2u).len());
-}
-
-#[test]
 fn test_vec_exists() {
     assert!(__::vec::Vect::exists(&1i, &vec!(1i, 2, 3)));
 }
@@ -52,12 +24,6 @@ fn test_vec_without() {
     for x in __::vec::Vect::new(vec_str).without(&vec!("bb", "cc")).iter() {
         assert_eq!("aa", **x);
     }
-}
-
-#[test]
-fn test_vec_union() {
-    let union_int_vec = __::vec::Vect::new(vec!(1i, 2, 3)).union(&vec!(4i, 5i, 6i));
-    assert_eq!(vec!(1i, 2, 3, 4, 5, 6), union_int_vec);
 }
 
 #[test]

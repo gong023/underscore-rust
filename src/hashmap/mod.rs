@@ -27,4 +27,10 @@ impl<'a, K: Eq + Hash, V: Eq + Hash> Hashing<K, V> {
 
         return invert;
     }
+
+//    pub fn pick<T>(self, keys: &Vec<T>) -> HashMap<K, V> {
+//        let mut picked = HashMap::new();
+//        for (key, value) in self.x.into_iter() {
+//        }
+//    }
 }
