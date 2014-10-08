@@ -4,8 +4,8 @@ use std::collections::HashMap;
 
 #[test]
 fn test_vec_first() {
-    assert_eq!(1i, *__::vec::Vect::new(vec!(1i, 2, 3)).first());
-    assert_eq!("aa", *__::vec::Vect::new(vec!("aa", "bb")).first())
+    assert_eq!(1i, *__::vec::Vect::new(vec!(1i, 2, 3)).first().unwrap());
+    assert_eq!("aa", *__::vec::Vect::new(vec!("aa", "bb")).first().unwrap());
 }
 
 #[test]
@@ -61,4 +61,16 @@ fn test_hash_invert() {
     let inverted = __::hashmap::Hashing::new(sample).invert();
     assert!(inverted.contains_key(&1u));
     assert!(inverted.contains_key(&2u));
+}
+
+#[test]
+fn test_hash_pick() {
+    let mut sample = HashMap::new();
+    sample.insert(1i, 1u);
+    sample.insert(2i, 2u);
+
+    let hashing = __::hashmap::Hashing::new(sample).pick(vec!(1i));
+    for key in hashing.keys() {
+        assert_eq!(1u, hashing.get_copy(key));
+    }
 }

@@ -15,8 +15,12 @@ impl<'a, T: PartialEq + Clone> Vect<T> {
         return false;
     }
 
-    pub fn first(&'a self) -> &'a T {
-        &self.x[0]
+    pub fn first(&'a self) -> Option<&'a T> {
+        if *&self.x.as_slice().is_empty() {
+            None
+        } else {
+            Some(&self.x[0])
+        }
     }
 
     pub fn without(&'a self, values: &Vec<T>) -> Vec<&'a T> {

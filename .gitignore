@@ -17,6 +17,7 @@
 /bin/main
 /bin/test-internal
 /bin/test-external
+/bin/test-simple
 /doc/
 /target/
 /build/
