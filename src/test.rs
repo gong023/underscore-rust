@@ -69,8 +69,50 @@ fn test_hash_pick() {
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
 
-    let hashing = __::hashmap::Hashing::new(sample).pick(vec!(1i));
-    for key in hashing.keys() {
-        assert_eq!(1u, hashing.get_copy(key));
+    let picked = __::hashmap::Hashing::new(sample).pick(vec!(1i));
+    for key in picked.keys() {
+        assert_eq!(1u, picked.get_copy(key));
+    }
+}
+
+#[allow(unused_variable)]
+fn sample_filter(x: &int, y: &uint) -> bool {
+    if *x == 1 { return true; }
+    return false;
+}
+
+#[test]
+fn test_hash_pick_by_filter() {
+    let mut sample = HashMap::new();
+    sample.insert(1i, 1u);
+    sample.insert(2i, 2u);
+
+    let picked = __::hashmap::Hashing::new(sample).pick_by_filter(sample_filter);
+    for key in picked.keys() {
+        assert_eq!(1u, picked.get_copy(key));
+    }
+}
+
+#[test]
+fn test_hash_omit() {
+    let mut sample = HashMap::new();
+    sample.insert(1i, 1u);
+    sample.insert(2i, 2u);
+
+    let omitted = __::hashmap::Hashing::new(sample).omit(vec!(1i));
+    for key in omitted.keys() {
+        assert_eq!(2u, omitted.get_copy(key));
+    }
+}
+
+#[test]
+fn test_hash_omit_by_filter() {
+    let mut sample = HashMap::new();
+    sample.insert(1i, 1u);
+    sample.insert(2i, 2u);
+
+    let omitted = __::hashmap::Hashing::new(sample).omit_by_filter(sample_filter);
+    for key in omitted.keys() {
+        assert_eq!(2u, omitted.get_copy(key));
     }
 }
