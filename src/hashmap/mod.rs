@@ -163,4 +163,32 @@ impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> Hashing<K, V> {
         return omitted;
     }
 
+    /// Fill in undefined properties in hashmap with the first value present in the following list of defaults objects.
+    /// usage:
+    ///
+    /// ```
+    /// let mut origin = HashMap::new();
+    /// origin.insert(1i, 1u);
+    /// origin.insert(2i, 2u);
+    ///
+    /// let mut appends = HashMap::new();
+    /// appends.insert(1i, 10000u);
+    /// appends.insert(3i, 3u);
+    ///
+    /// let defaults = __::hashmap::Hashing::new(origin).defaults(appends);
+    /// // => HashMap { 1i, 1u, 2u: 2i, 3i: 3u }
+    /// ```
+    pub fn defaults(self, appends: HashMap<K, V>) -> HashMap<K, V> {
+        let mut origin = self.x.clone();
+        for (key, value) in appends.into_iter() {
+            if ! origin.contains_key(&key) { origin.insert(key, value); }
+        }
+
+        return origin;
+    }
+
+    // needs #![feature(unboxed_closures, unboxed_closure_sugar)] and the are still experimental
+    // pub fn property(self, key: K) -> Box<|&:|:'static -> V> {
+    //     return box |&:| { self.x.get_copy(&key) };
+    // }
 }

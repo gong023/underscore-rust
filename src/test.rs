@@ -9,36 +9,28 @@ fn test_vec_first() {
 }
 
 #[test]
-fn test_vec_exists() {
-    assert!(__::vec::Vect::exists(&1i, &vec!(1i, 2, 3)));
-}
-
-#[test]
 fn test_vec_without() {
     let vec_int = vec!(1i, 2i, 2i);
     for x in __::vec::Vect::new(vec_int).without(&vec!(1i)).iter() {
-        assert_eq!(2i, **x);
+        assert_eq!(2i, *x);
     }
 
     let vec_str = vec!("aa", "bb", "bb", "cc");
     for x in __::vec::Vect::new(vec_str).without(&vec!("bb", "cc")).iter() {
-        assert_eq!("aa", **x);
+        assert_eq!("aa", *x);
     }
 }
 
 #[test]
 fn test_vec_intersection() {
-    let intersect_int_vec = __::vec::Vect::new(vec!(1i, 2, 3));
-    assert_eq!(1u, intersect_int_vec.intersection(&vec!(2i, 4)).len());
-    assert_eq!(2i, *intersect_int_vec.intersection(&vec!(2i, 4))[0]);
+    let intersected = __::vec::Vect::new(vec!(1i, 2, 3)).intersection(&vec!(2i, 3, 4));
+    assert_eq!(vec!(2i, 3), intersected);
 }
 
 #[test]
 fn test_vec_uniq() {
-    let vec_int = __::vec::Vect::new(vec!(0u, 1, 1, 2, 2, 3));
-    assert_eq!(0u, *vec_int.uniq()[0]);
-    assert_eq!(1u, *vec_int.uniq()[1]);
-    assert_eq!(4u, vec_int.uniq().len());
+    let uniqed = __::vec::Vect::new(vec!(0u, 1, 1, 2, 2, 3)).uniq();
+    assert_eq!(vec!(0u, 1, 2, 3), uniqed);
 }
 
 #[test]
@@ -114,5 +106,22 @@ fn test_hash_omit_by_filter() {
     let omitted = __::hashmap::Hashing::new(sample).omit_by_filter(sample_filter);
     for key in omitted.keys() {
         assert_eq!(2u, omitted.get_copy(key));
+    }
+}
+
+#[test]
+fn test_hash_defaults() {
+    let mut origin = HashMap::new();
+    origin.insert(1i, 1u);
+    origin.insert(2i, 2u);
+
+    let mut appends = HashMap::new();
+    appends.insert(1i, 10000u);
+    appends.insert(3i, 3u);
+
+    let defaults = __::hashmap::Hashing::new(origin).defaults(appends);
+    for x in vec!(1i, 2, 3).iter() {
+        assert!(defaults.contains_key(x));
+        assert_eq!(*x as uint, defaults.get_copy(x));
     }
 }

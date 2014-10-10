@@ -3,18 +3,27 @@ pub struct Vect<T> {
 }
 
 impl<'a, T: PartialEq + Clone> Vect<T> {
+
+    /// usage:
+    ///
+    /// ```
+    /// extern crate __;
+    ///
+    /// // you can get Vect struct by `new`.
+    /// __::vec::Vect::new(vec!(1i, 2, 3));
+    /// ```
     pub fn new(v: Vec<T>) -> Vect<T> {
         Vect { x: v }
     }
 
-    pub fn exists(x: &T, v: &Vec<T>) -> bool {
-        for element in v.iter() {
-            if element.eq(x) { return true; }
-        }
-
-        return false;
-    }
-
+    /// Returns the first element of a vector as Option.
+    /// usage:
+    ///
+    /// ```
+    /// let sample = vec!(1i, 2, 3);
+    ///
+    /// assert_eq!(1i, *__::vec::Vect::new(sample).first().unwrap());
+    /// ```
     pub fn first(&'a self) -> Option<&'a T> {
         if *&self.x.as_slice().is_empty() {
             None
@@ -23,28 +32,56 @@ impl<'a, T: PartialEq + Clone> Vect<T> {
         }
     }
 
-    pub fn without(&'a self, values: &Vec<T>) -> Vec<&'a T> {
+    /// Returns a copy of the vector with all instances of the values removed.
+    /// usage:
+    ///
+    /// ```
+    /// let vec_int = vec!(1i, 2i, 2i);
+    ///
+    /// __::vec::Vect::new(vec_int).without(&vec!(1i));
+    /// // => vector [2i, 2i]
+    /// ```
+    pub fn without(self, values: &Vec<T>) -> Vec<T> {
         let mut without_elements = Vec::new();
-        for element in self.x.iter() {
-            if ! Vect::exists(element, values) { without_elements.push(element) }
+        for element in self.x.into_iter() {
+            if ! values.contains(&element) { without_elements.push(element) }
         }
 
         return without_elements;
     }
 
-    pub fn intersection(&'a self, intersec: &Vec<T>) -> Vec<&'a T> {
+    /// Computes the list of values that are the intersection of argument vector.
+    /// Each value in the result is present in each of the arrays.
+    /// usage:
+    ///
+    /// ```
+    /// let vec_int = vec!(1i, 2, 3);
+    ///
+    /// __::vec::Vect::new(vec_int).intersection(&vec!(2i, 3, 4));
+    /// // => vector [2i, 3i]
+    /// ```
+    pub fn intersection(self, intersec: &Vec<T>) -> Vec<T> {
         let mut intersected = Vec::new();
-        for element in self.x.iter() {
-            if Vect::exists(element, intersec) { intersected.push(element) }
+        for element in self.x.into_iter() {
+            if intersec.contains(&element) { intersected.push(element) }
         }
 
         return intersected;
     }
 
-    pub fn uniq(&'a self) -> Vec<&'a T> {
+    /// Produces a duplicate-free version of the vector.
+    /// usage:
+    ///
+    /// ```
+    /// let vec_int = vec!(0i, 1, 1, 1, 2, 2, 2, 3);
+    ///
+    /// __::vec::Vect::new(vec_int).uniq();
+    /// // => vector [0i, 1, 2, 3]
+    /// ```
+    pub fn uniq(self) -> Vec<T> {
         let mut uniq = Vec::new();
-        for element in self.x.iter() {
-            if ! Vect::exists(&element, &uniq) { uniq.push(element) }
+        for element in self.x.into_iter() {
+            if ! uniq.contains(&element) { uniq.push(element) }
         }
 
         return uniq;
