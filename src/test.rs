@@ -34,6 +34,32 @@ fn test_vec_uniq() {
 }
 
 #[test]
+fn test_vec_index_of() {
+    assert_eq!(2u, __::vec::Vect::new(vec!(3i, 2, 1)).index_of(&1i, false).unwrap());
+    assert_eq!(0u, __::vec::Vect::new(vec!(3i, 2, 1)).index_of(&1i, true).unwrap());
+    assert_eq!(None, __::vec::Vect::new(vec!(3i, 2, 1)).index_of(&4i, false));
+}
+
+#[test]
+fn test_vec_last_index_of() {
+    assert_eq!(3u, __::vec::Vect::new(vec!(1i, 2, 3, 1)).last_index_of(&1i).unwrap());
+    assert_eq!(0u, __::vec::Vect::new(vec!(1i, 2, 3)).last_index_of(&1i).unwrap());
+    assert_eq!(None, __::vec::Vect::new(vec!(3i, 2, 1)).last_index_of(&4i));
+}
+
+#[test]
+fn test_vec_object() {
+    let obj = __::vec::Vect::new(vec!(0u, 1, 2, 3)).object(vec!(0i, 1, 2, 3));
+
+    for key in range(0u, obj.len()) {
+        match obj.find(&key) {
+            Some(value) => assert_eq!(*value as uint, key),
+            None => fail!("{} not found at test_vec_object", key),
+        }
+    }
+}
+
+#[test]
 fn test_hash_pairs() {
     let mut sample = HashMap::new();
     sample.insert(1i, 1u);
