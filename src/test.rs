@@ -55,19 +55,14 @@ fn test_vec_object() {
     }
 }
 
-//#[test]
-//fn test_hash_pairs() {
-//    let mut sample = HashMap::new();
-//    sample.insert(1i, 1u);
-//    sample.insert(2i, 2u);
-//    let pairs = __::hashmap::Hashing::new(sample).pairs();
-//
-//    assert_eq!((1i, 1u), pairs[0]);
-//    assert_eq!((2i, 2u), pairs[1]);
-//}
+#[test]
+fn test_vec_reject() {
+    let rejected = vec!(1i, 2, 10).reject(|&v| v < 10);
+    assert_eq!(vec!(10i), rejected);
+}
 
 #[test]
-fn test_hash_invert() {
+fn test_hashmap_invert() {
     let mut sample = HashMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
@@ -80,7 +75,7 @@ fn test_hash_invert() {
 }
 
 #[test]
-fn test_hash_pick() {
+fn test_hashmap_pick() {
     let mut sample = HashMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
@@ -98,7 +93,7 @@ fn sample_filter(x: &int, y: &uint) -> bool {
 }
 
 #[test]
-fn test_hash_pick_by_filter() {
+fn test_hashmap_pick_by_filter() {
     let mut sample = HashMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
@@ -110,7 +105,7 @@ fn test_hash_pick_by_filter() {
 }
 
 #[test]
-fn test_hash_omit() {
+fn test_hashmap_omit() {
     let mut sample = HashMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
@@ -122,7 +117,7 @@ fn test_hash_omit() {
 }
 
 #[test]
-fn test_hash_omit_by_filter() {
+fn test_hashmap_omit_by_filter() {
     let mut sample = HashMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
@@ -134,7 +129,7 @@ fn test_hash_omit_by_filter() {
 }
 
 #[test]
-fn test_hash_defaults() {
+fn test_hashmap_defaults() {
     let mut origin = HashMap::new();
     origin.insert(1i, 1u);
     origin.insert(2i, 2u);

@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 pub mod expands;
 
-/// UnderscoreHashMap expands keyvalue struct
+/// UnderscoreHashMap expands HashMap
 /// usage:
 ///
 /// ```

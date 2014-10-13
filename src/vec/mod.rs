@@ -22,5 +22,7 @@ pub trait UnderscoreVec<T> {
     fn last_index_of(&self, value: &T) -> Option<uint>;
 
     fn object<V: Clone>(self, value: Vec<V>) -> TreeMap<T, V>;
+
+    fn reject(self, f: |value: &T| -> bool) -> Vec<T>;
 }
 

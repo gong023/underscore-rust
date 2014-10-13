@@ -113,5 +113,21 @@ impl<T: PartialEq + Clone + Ord> UnderscoreVec<T> for Vec<T>{
         }
         return obj;
     }
+
+    /// reject the values in Vector without the elements that the truth test (predicate) passes.
+    /// The opposite of vec!().iter().filter();
+    /// usage:
+    ///
+    /// ```
+    /// let sample = vec!(1i, 2, 10);
+    /// assert_eq!(vec!(10i), sample.reject(|&v| x < 10));
+    /// ```
+    fn reject(self, f: |value: &T| -> bool) -> Vec<T> {
+        let mut rejected = Vec::new();
+        for element in self.into_iter() {
+            if ! f(&element) { rejected.push(element) }
+        }
+        return rejected;
+    }
 }
 
