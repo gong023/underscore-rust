@@ -1,55 +1,50 @@
 extern crate __;
 
+use __::vec::VecUnderscore;
 use std::collections::HashMap;
 
 #[test]
 fn test_vec_first() {
-    assert_eq!(1i, *__::vec::Vect::new(vec!(1i, 2, 3)).first().unwrap());
-    assert_eq!("aa", *__::vec::Vect::new(vec!("aa", "bb")).first().unwrap());
+    let v = vec!(1i, 2, 3);
+    assert_eq!(1i, *v.first().unwrap());
 }
 
 #[test]
 fn test_vec_without() {
-    let vec_int = vec!(1i, 2i, 2i);
-    for x in __::vec::Vect::new(vec_int).without(&vec!(1i)).iter() {
+    let v = vec!(1i, 2, 2);
+    for x in v.without(&vec!(1i)).iter() {
         assert_eq!(2i, *x);
-    }
-
-    let vec_str = vec!("aa", "bb", "bb", "cc");
-    for x in __::vec::Vect::new(vec_str).without(&vec!("bb", "cc")).iter() {
-        assert_eq!("aa", *x);
     }
 }
 
 #[test]
 fn test_vec_intersection() {
-    let intersected = __::vec::Vect::new(vec!(1i, 2, 3)).intersection(&vec!(2i, 3, 4));
-    assert_eq!(vec!(2i, 3), intersected);
+    let v = vec!(1i, 2, 3);
+    assert_eq!(vec!(2i, 3), v.intersection(&vec!(2i, 3)));
 }
 
 #[test]
 fn test_vec_uniq() {
-    let uniqed = __::vec::Vect::new(vec!(0u, 1, 1, 2, 2, 3)).uniq();
-    assert_eq!(vec!(0u, 1, 2, 3), uniqed);
+    let v = vec!(0u, 1, 1, 2, 2, 3);
+    assert_eq!(vec!(0u, 1, 2, 3), v.uniq());
 }
 
 #[test]
 fn test_vec_index_of() {
-    assert_eq!(2u, __::vec::Vect::new(vec!(3i, 2, 1)).index_of(&1i, false).unwrap());
-    assert_eq!(0u, __::vec::Vect::new(vec!(3i, 2, 1)).index_of(&1i, true).unwrap());
-    assert_eq!(None, __::vec::Vect::new(vec!(3i, 2, 1)).index_of(&4i, false));
+    assert_eq!(2u, vec!(3i, 2, 1).index_of(&1i).unwrap());
+    assert_eq!(None, vec!(3i, 2, 1).index_of(&4i));
 }
 
 #[test]
 fn test_vec_last_index_of() {
-    assert_eq!(3u, __::vec::Vect::new(vec!(1i, 2, 3, 1)).last_index_of(&1i).unwrap());
-    assert_eq!(0u, __::vec::Vect::new(vec!(1i, 2, 3)).last_index_of(&1i).unwrap());
-    assert_eq!(None, __::vec::Vect::new(vec!(3i, 2, 1)).last_index_of(&4i));
+    assert_eq!(3u, vec!(1i, 2, 3, 1).last_index_of(&1i).unwrap());
+    assert_eq!(0u, vec!(1i, 2, 3).last_index_of(&1i).unwrap());
+    assert_eq!(None, vec!(3i, 2, 1).last_index_of(&4i));
 }
 
 #[test]
 fn test_vec_object() {
-    let obj = __::vec::Vect::new(vec!(0u, 1, 2, 3)).object(vec!(0i, 1, 2, 3));
+    let obj = vec!(0u, 1, 2, 3).object(vec!(0i, 1, 2, 3));
 
     for key in range(0u, obj.len()) {
         match obj.find(&key) {
