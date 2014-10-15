@@ -140,4 +140,24 @@ impl<K: Ord + Clone, V: Ord + Clone> UnderscoreTreeMap<K, V> for TreeMap<K, V> {
 
         return origin;
     }
+
+    /// Convert a treemap into a vector of (key, value) tuple pairs.
+    /// usage:
+    ///
+    /// ```
+    /// let mut sample = TreeMap::new();
+    /// sample.insert(1i, 1u);
+    /// sample.insert(2i, 2u);
+    ///
+    /// let pairs = sample.pairs();
+    /// // => Vec<(1i, 1u), (2i, 2u)>
+    /// ```
+    fn pairs<'a>(&'a self) -> Vec<(&'a K, &'a V)> {
+        let mut pairs = Vec::new();
+        for (key, value) in self.iter() {
+            pairs.push((key, value));
+        }
+
+        return pairs;
+    }
 }

@@ -21,5 +21,5 @@ pub trait UnderscoreTreeMap<K, V> {
 
     fn defaults(self, appends: TreeMap<K, V>) -> TreeMap<K, V>;
 
-//    fn pairs()
+    fn pairs<'a>(&'a self) -> Vec<(&'a K, &'a V)>;
 }

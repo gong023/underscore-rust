@@ -222,3 +222,18 @@ fn test_treemap_defaults() {
     }
 }
 
+#[test]
+#[allow(deprecated)]
+fn test_treemap_pairs() {
+    let mut sample = TreeMap::new();
+    sample.insert(1i, 1u);
+    sample.insert(2i, 2u);
+    sample.insert(3i, 3u);
+    let mut pairs = sample.pairs();
+
+    for i in vec!(1i, 2, 3).iter() {
+        let element = pairs.shift().unwrap();
+        assert_eq!(*i, *element.val0());
+        assert_eq!(*i as uint, *element.val1());
+    }
+}
