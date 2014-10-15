@@ -135,8 +135,8 @@ impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> UnderscoreHashMap<K, V> for
     /// appends.insert(1i, 10000u);
     /// appends.insert(3i, 3u);
     ///
-    /// let defaults = __::hashmap::Hashing::new(origin).defaults(appends);
-    /// // => HashMap { 1i, 1u, 2u: 2i, 3i: 3u }
+    /// let defaults = origin.defaults(appends);
+    /// // => HashMap { 1i: 1u, 2i: 2u, 3i: 3u }
     /// ```
     fn defaults(self, appends: HashMap<K, V>) -> HashMap<K, V> {
         let mut origin = self.clone();
