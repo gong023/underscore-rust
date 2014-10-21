@@ -1,8 +1,8 @@
 use std::hash::Hash;
 use std::collections::HashMap;
-use hashmap::UnderscoreHashMap;
+use hashmap::HashMapU;
 
-impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> UnderscoreHashMap<K, V> for HashMap<K, V> {
+impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> HashMapU<K, V> for HashMap<K, V> {
 
     fn invert(self) -> HashMap<V, K> {
         let mut invert = HashMap::new();

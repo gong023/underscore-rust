@@ -6,9 +6,9 @@ pub mod expands;
 /// # Example
 ///
 /// ```
-/// pub use __::vec::UnderscoreTreeMap;
+/// pub use underscore::vec::TreeMapU;
 /// ```
-pub trait UnderscoreTreeMap<K, V> {
+pub trait TreeMapU<K, V> {
     /// Returns a copy of the treemap where the keys have become the values and the values the keys.
     /// # Example
     ///

@@ -8,7 +8,7 @@ pub mod expands;
 /// ```
 /// pub use __::vec::UnderscoreHashMap;
 /// ```
-pub trait UnderscoreHashMap<K, V> {
+pub trait HashMapU<K, V> {
     /// Returns a copy of the hashmap where the keys have become the values and the values the keys.
     /// # Example
     ///

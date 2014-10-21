@@ -1,8 +1,8 @@
-extern crate __;
+extern crate underscore;
 
-use __::vec::UnderscoreVec;
-use __::hashmap::UnderscoreHashMap;
-use __::treemap::UnderscoreTreeMap;
+use underscore::vec::VecU;
+use underscore::hashmap::HashMapU;
+use underscore::treemap::TreeMapU;
 use std::collections::HashMap;
 use std::collections::TreeMap;
 
@@ -229,11 +229,9 @@ fn test_treemap_pairs() {
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     sample.insert(3i, 3u);
-    let mut pairs = sample.pairs();
+    let pairs = sample.pairs();
 
-    for i in vec!(1i, 2, 3).iter() {
-        let element = pairs.shift().unwrap();
-        assert_eq!(*i, *element.val0());
-        assert_eq!(*i as uint, *element.val1());
-    }
+    assert_eq!(3u, pairs.len());
+    assert_eq!(1i, *pairs[0].val0());
+    assert_eq!(1u, *pairs[0].val1());
 }

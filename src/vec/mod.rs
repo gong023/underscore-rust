@@ -5,9 +5,9 @@ pub mod expand;
 /// UnderscoreVec expands collections::vec::Vec
 /// # Example
 /// ```
-/// pub use __::vec::UnderscoreVec;
+/// pub use underscore::vec::VecU;
 /// ```
-pub trait UnderscoreVec<T> {
+pub trait VecU<T> {
     /// Returns the first element of a vector as Option.
     /// # Example
     /// ```

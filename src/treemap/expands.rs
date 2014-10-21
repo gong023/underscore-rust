@@ -1,8 +1,7 @@
-
 use std::collections::TreeMap;
-use treemap::UnderscoreTreeMap;
+use treemap::TreeMapU;
 
-impl<K: Ord + Clone, V: Ord + Clone> UnderscoreTreeMap<K, V> for TreeMap<K, V> {
+impl<K: Ord + Clone, V: Ord + Clone> TreeMapU<K, V> for TreeMap<K, V> {
 
     fn invert(self) -> TreeMap<V, K> {
         let mut invert = TreeMap::new();

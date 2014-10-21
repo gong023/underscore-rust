@@ -1,7 +1,7 @@
-use vec::UnderscoreVec;
+use vec::VecU;
 use std::collections::TreeMap;
 
-impl<T: PartialEq + Clone + Ord> UnderscoreVec<T> for Vec<T>{
+impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
     fn first<'a>(&'a self) -> Option<&'a T> {
         self.as_slice().head()
     }
