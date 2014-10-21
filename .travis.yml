@@ -8,7 +8,9 @@ before_install:
 install:
   - sudo apt-get install -qq rust-nightly cargo
 script:
-  - cargo build
+  - cargo build -v
   - make test
+  - cargo doc --no-deps -v
+  - mv target/doc doc
 after_script:
   - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
