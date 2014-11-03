@@ -16,7 +16,7 @@ impl<K: Ord + Clone, V: Ord + Clone> TreeMapU<K, V> for TreeMap<K, V> {
         for element in keys.iter() {
             match self.find(element) {
                 Some(value) => { picked.insert(element.clone(), value.clone()); },
-                None => fail!("not found key"),
+                None => {},
             }
         }
 

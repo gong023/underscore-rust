@@ -52,7 +52,7 @@ fn test_vec_object() {
     for key in range(0u, obj.len()) {
         match obj.find(&key) {
             Some(value) => assert_eq!(*value as uint, key),
-            None => fail!("{} not found at test_vec_object", key),
+            None => assert!(false),
         }
     }
 }
