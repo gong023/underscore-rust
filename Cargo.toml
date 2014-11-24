@@ -3,3 +3,9 @@
 name = "underscore"
 version = "0.0.1"
 authors = ["gong023 <gon.gong.gone@gmail.com>"]
+
+description="utility library for rust. Inspired by underscore.js."
+documentation = "http://www.rust-ci.org/gong023/underscore-rust/doc/underscore/"
+keywords=["utility","underscore"]
+
+license = "MIT"
