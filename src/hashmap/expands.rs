@@ -16,7 +16,7 @@ impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> HashMapU<K, V> for HashMap<
         let mut picked = HashMap::new();
         for element in keys.into_iter() {
             if self.contains_key(&element) {
-                let v = self.get_copy(&element);
+                let v = self[element].clone();
                 picked.insert(element, v);
             }
         }
@@ -27,7 +27,7 @@ impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> HashMapU<K, V> for HashMap<
         let mut picked = HashMap::new();
         for key in self.keys() {
             let cp_key = key.clone();
-            let cp_val = self.get_copy(key);
+            let cp_val = self[cp_key].clone();
             if f(&cp_key, &cp_val) { picked.insert(cp_key, cp_val); }
         }
         return picked;
@@ -46,7 +46,7 @@ impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> HashMapU<K, V> for HashMap<
         let mut omitted = HashMap::new();
         for key in self.keys() {
             let cp_key = key.clone();
-            let cp_val = self.get_copy(key);
+            let cp_val = self[cp_key].clone();
             if ! f(&cp_key, &cp_val) { omitted.insert(cp_key, cp_val); }
         }
         return omitted;

@@ -50,7 +50,7 @@ fn test_vec_object() {
     let obj = vec!(0u, 1, 2, 3).object(vec!(0i, 1, 2, 3));
 
     for key in range(0u, obj.len()) {
-        match obj.find(&key) {
+        match obj.get(&key) {
             Some(value) => assert_eq!(*value as uint, key),
             None => assert!(false),
         }
@@ -72,7 +72,7 @@ fn test_hashmap_invert() {
 
     for x in vec!(1u, 2).iter() {
         assert!(inverted.contains_key(x));
-        assert_eq!(*x as int, inverted.get_copy(x));
+        assert_eq!(*x as int, inverted[*x]);
     }
 }
 
@@ -84,11 +84,11 @@ fn test_hashmap_pick() {
     let picked = sample.pick(vec!(1i));
 
     for key in picked.keys() {
-        assert_eq!(1u, picked.get_copy(key));
+        assert_eq!(1u, picked[*key]);
     }
 }
 
-#[allow(unused_variable)]
+#[allow(unused_variables)]
 fn sample_filter(x: &int, y: &uint) -> bool {
     if *x == 1 { return true; }
     return false;
@@ -102,7 +102,7 @@ fn test_hashmap_pick_by_filter() {
     let picked = sample.pick_by_filter(sample_filter);
 
     for key in picked.keys() {
-        assert_eq!(1u, picked.get_copy(key));
+        assert_eq!(1u, picked[*key]);
     }
 }
 
@@ -114,7 +114,7 @@ fn test_hashmap_omit() {
     let omitted = sample.omit(vec!(1i));
 
     for key in omitted.keys() {
-        assert_eq!(2u, omitted.get_copy(key));
+        assert_eq!(2u, omitted[*key]);
     }
 }
 
@@ -156,7 +156,7 @@ fn test_treemap_invert() {
 
     for x in vec!(1u, 2).iter() {
         assert!(inverted.contains_key(x));
-        assert_eq!(*x as int, *inverted.find(x).unwrap());
+        assert_eq!(*x as int, *inverted.get(x).unwrap());
     }
 }
 
@@ -169,7 +169,7 @@ fn test_treemap_pick() {
     let picked = sample.pick(&v);
 
     assert_eq!(1u, picked.len());
-    assert_eq!(1u, *picked.find(&1i).unwrap());
+    assert_eq!(1u, *picked.get(&1i).unwrap());
 }
 
 #[test]
@@ -180,7 +180,7 @@ fn test_treemap_pick_by_filter() {
     let picked = sample.pick_by_filter(sample_filter);
 
     assert_eq!(1u, picked.len());
-    assert_eq!(1u, *picked.find(&1i).unwrap());
+    assert_eq!(1u, *picked.get(&1i).unwrap());
 }
 
 #[test]
@@ -191,7 +191,7 @@ fn test_treemap_omit() {
     let omitted = sample.omit(&vec!(1i));
 
     assert_eq!(1u, omitted.len());
-    assert_eq!(2u, *omitted.find(&2i).unwrap());
+    assert_eq!(2u, *omitted.get(&2i).unwrap());
 }
 
 #[test]
@@ -202,7 +202,7 @@ fn test_treemap_omit_by_filter() {
     let omitted = sample.omit_by_filter(sample_filter);
 
     assert_eq!(1u, omitted.len());
-    assert_eq!(2u, *omitted.find(&2i).unwrap());
+    assert_eq!(2u, *omitted.get(&2i).unwrap());
 }
 
 #[test]
@@ -218,7 +218,7 @@ fn test_treemap_defaults() {
     let defaults = origin.defaults(appends);
     for x in vec!(1i, 2, 3).iter() {
         assert!(defaults.contains_key(x));
-        assert_eq!(*x as uint, *defaults.find(x).unwrap());
+        assert_eq!(*x as uint, *defaults.get(x).unwrap());
     }
 }
 

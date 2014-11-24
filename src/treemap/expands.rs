@@ -14,7 +14,7 @@ impl<K: Ord + Clone, V: Ord + Clone> TreeMapU<K, V> for TreeMap<K, V> {
     fn pick(self, keys: &Vec<K>) -> TreeMap<K, V> {
         let mut picked = TreeMap::new();
         for element in keys.iter() {
-            match self.find(element) {
+            match self.get(element) {
                 Some(value) => { picked.insert(element.clone(), value.clone()); },
                 None => {},
             }
