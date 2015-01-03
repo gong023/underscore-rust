@@ -125,9 +125,9 @@ fn test_hashmap_omit_by_filter() {
     sample.insert(2i, 2u);
     let omitted = sample.omit_by_filter(sample_filter);
 
-    for key in omitted.keys() {
-        assert_eq!(2u, omitted.get_copy(key));
-    }
+    let mut expected = HashMap::new();
+    expected.insert(2i, 2u);
+    assert_eq!(expected, omitted);
 }
 
 #[test]
@@ -143,7 +143,7 @@ fn test_hashmap_defaults() {
     let defaults = origin.defaults(appends);
     for x in vec!(1i, 2, 3).iter() {
         assert!(defaults.contains_key(x));
-        assert_eq!(*x as uint, defaults.get_copy(x));
+        assert_eq!(*x as uint, *defaults.get(x).unwrap());
     }
 }
 
@@ -185,7 +185,7 @@ fn test_treemap_pick_by_filter() {
 
 #[test]
 fn test_treemap_omit() {
-    let mut sample = BTreemap::new();
+    let mut sample = BTreeMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     let omitted = sample.omit(&vec!(1i));
@@ -196,7 +196,7 @@ fn test_treemap_omit() {
 
 #[test]
 fn test_treemap_omit_by_filter() {
-    let mut sample = BTreemap::new();
+    let mut sample = BTreeMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     let omitted = sample.omit_by_filter(sample_filter);
@@ -207,11 +207,11 @@ fn test_treemap_omit_by_filter() {
 
 #[test]
 fn test_treemap_defaults() {
-    let mut origin = BTreemap::new();
+    let mut origin = BTreeMap::new();
     origin.insert(1i, 1u);
     origin.insert(2i, 2u);
 
-    let mut appends = BTreemap::new();
+    let mut appends = BTreeMap::new();
     appends.insert(1i, 10000u);
     appends.insert(3i, 3u);
 
@@ -225,7 +225,7 @@ fn test_treemap_defaults() {
 #[test]
 #[allow(deprecated)]
 fn test_treemap_pairs() {
-    let mut sample = BTreemap::new();
+    let mut sample = BTreeMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     sample.insert(3i, 3u);

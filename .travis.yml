@@ -4,7 +4,7 @@ env:
     - secure: ZErwEGNao3SD9q3M1m1/MOPuYJ0Ihd7JoULM0fgg8OkdFAwm0GCWTsdyhETqfLjnNmsyIc0YR/s4/LxZVRHpnsfg1osYQ1S96E2oSj9swWOBJaUF9dqVrL3oQ6d3APTzoDMICIlDJoLfEaUJ9vy6Mm3whOAu3Xj0jCsZk9vdQ2o=
 script:
   - cargo build -v
-  - make test
+  - cargo test -v
   - cargo doc -v
   - mv target/doc doc
 after_script:

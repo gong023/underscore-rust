@@ -3,16 +3,14 @@ use std::collections::BTreeMap;
 pub mod expands;
 
 /// BTreeMapU expands BTreeMap
-/// # Example
-///
-/// ```
-/// pub use underscore::vec::BTreeMapU;
-/// ```
 pub trait BTreeMapU<K, V> {
     /// Returns a copy of the BTreeMap where the keys have become the values and the values the keys.
     /// # Example
     ///
     /// ```
+    /// use std::collections::BTreeMap;
+    /// use underscore::btreemap::BTreeMapU;
+    ///
     /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
@@ -26,6 +24,9 @@ pub trait BTreeMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::BTreeMap;
+    /// use underscore::btreemap::BTreeMapU;
+    ///
     /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
@@ -40,6 +41,9 @@ pub trait BTreeMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::BTreeMap;
+    /// use underscore::btreemap::BTreeMapU;
+    ///
     /// #[allow(unused_variable)]
     /// fn sample_filter(x: &int, y: &uint) -> bool {
     ///     if *x == 1 { return true; }
@@ -59,6 +63,9 @@ pub trait BTreeMapU<K, V> {
     /// omit_by_filter filters keys to pick by function.
     ///
     /// ```
+    /// use std::collections::BTreeMap;
+    /// use underscore::btreemap::BTreeMapU;
+    ///
     /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
@@ -73,6 +80,9 @@ pub trait BTreeMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::BTreeMap;
+    /// use underscore::btreemap::BTreeMapU;
+    ///
     /// #[allow(unused_variable)]
     /// fn sample_filter(x: &int, y: &uint) -> bool {
     ///     if *x == 1 { return true; }
@@ -92,6 +102,9 @@ pub trait BTreeMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::BTreeMap;
+    /// use underscore::btreemap::BTreeMapU;
+    ///
     /// let mut origin = BTreeMap::new();
     /// origin.insert(1i, 1u);
     /// origin.insert(2i, 2u);
@@ -109,6 +122,9 @@ pub trait BTreeMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::BTreeMap;
+    /// use underscore::btreemap::BTreeMapU;
+    ///
     /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);

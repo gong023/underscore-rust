@@ -3,16 +3,14 @@ use std::collections::HashMap;
 pub mod expands;
 
 /// UnderscoreHashMap expands HashMap
-/// # Example
-///
-/// ```
-/// pub use __::vec::UnderscoreHashMap;
-/// ```
 pub trait HashMapU<K, V> {
     /// Returns a copy of the hashmap where the keys have become the values and the values the keys.
     /// # Example
     ///
     /// ```
+    /// use std::collections::HashMap;
+    /// use underscore::hashmap::HashMapU;
+    ///
     /// let mut sample = HashMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
@@ -26,6 +24,9 @@ pub trait HashMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::HashMap;
+    /// use underscore::hashmap::HashMapU;
+    ///
     /// let mut sample = HashMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
@@ -40,6 +41,9 @@ pub trait HashMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::HashMap;
+    /// use underscore::hashmap::HashMapU;
+    ///
     /// #[allow(unused_variable)]
     /// fn sample_filter(x: &int, y: &uint) -> bool {
     ///     if *x == 1 { return true; }
@@ -59,6 +63,9 @@ pub trait HashMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::HashMap;
+    /// use underscore::hashmap::HashMapU;
+    ///
     /// let mut sample = HashMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
@@ -73,6 +80,9 @@ pub trait HashMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::HashMap;
+    /// use underscore::hashmap::HashMapU;
+    ///
     /// #[allow(unused_variable)]
     /// fn sample_filter(x: &int, y: &uint) -> bool {
     ///     if *x == 1 { return true; }
@@ -92,6 +102,9 @@ pub trait HashMapU<K, V> {
     /// # Example
     ///
     /// ```
+    /// use std::collections::HashMap;
+    /// use underscore::hashmap::HashMapU;
+    ///
     /// let mut origin = HashMap::new();
     /// origin.insert(1i, 1u);
     /// origin.insert(2i, 2u);
