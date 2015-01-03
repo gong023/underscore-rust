@@ -1,4 +1,4 @@
-use std::collections::TreeMap;
+use std::collections::BTreeMap;
 
 pub mod expand;
 
@@ -60,13 +60,13 @@ pub trait VecU<T> {
     /// ```
     fn last_index_of(&self, value: &T) -> Option<uint>;
 
-    /// Converts vector into treemap.
+    /// Converts vector into BTreeMap.
     /// # Example
     /// ```
     /// let obj = vec!(0u, 1, 2, 3).object(vec!(0i, 1, 2, 3));
-    /// => TreeMap<0u, 0i><1u, 1i>...
+    /// => BTreeMap<0u, 0i><1u, 1i>...
     /// ```
-    fn object<V: Clone>(self, value: Vec<V>) -> TreeMap<T, V>;
+    fn object<V: Clone>(self, value: Vec<V>) -> BTreeMap<T, V>;
 
     /// reject the values in Vector without the elements that the truth test (predicate) passes.
     /// The opposite of vec!().iter().filter();

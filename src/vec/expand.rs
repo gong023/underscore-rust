@@ -1,9 +1,9 @@
 use vec::VecU;
-use std::collections::TreeMap;
+use std::collections::BTreeMap;
 
 impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
     fn first<'a>(&'a self) -> Option<&'a T> {
-        self.as_slice().head()
+        self.as_slice().first()
     }
 
     fn without(self, values: &Vec<T>) -> Vec<T> {
@@ -55,8 +55,8 @@ impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
 
     // FIXME: If duplicate keys exist, the last value wins.
     // FIXME: If values are shorter than keys, insert None.
-    fn object<V: Clone>(self, value: Vec<V>) -> TreeMap<T, V> {
-        let mut obj = TreeMap::new();
+    fn object<V: Clone>(self, value: Vec<V>) -> BTreeMap<T, V> {
+        let mut obj = BTreeMap::new();
         for i in range(0u, self.len() - 1) {
             obj.insert(self[i].clone(), value[i].clone());
         }

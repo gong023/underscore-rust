@@ -1,18 +1,18 @@
-use std::collections::TreeMap;
-use treemap::TreeMapU;
+use std::collections::BTreeMap;
+use btreemap::BTreeMapU;
 
-impl<K: Ord + Clone, V: Ord + Clone> TreeMapU<K, V> for TreeMap<K, V> {
+impl<K: Ord + Clone, V: Ord + Clone> BTreeMapU<K, V> for BTreeMap<K, V> {
 
-    fn invert(self) -> TreeMap<V, K> {
-        let mut invert = TreeMap::new();
+    fn invert(self) -> BTreeMap<V, K> {
+        let mut invert = BTreeMap::new();
         for (key, value) in self.into_iter() {
             invert.insert(value, key);
         }
         return invert;
     }
 
-    fn pick(self, keys: &Vec<K>) -> TreeMap<K, V> {
-        let mut picked = TreeMap::new();
+    fn pick(self, keys: &Vec<K>) -> BTreeMap<K, V> {
+        let mut picked = BTreeMap::new();
         for element in keys.iter() {
             match self.get(element) {
                 Some(value) => { picked.insert(element.clone(), value.clone()); },
@@ -23,31 +23,31 @@ impl<K: Ord + Clone, V: Ord + Clone> TreeMapU<K, V> for TreeMap<K, V> {
         return picked;
     }
 
-    fn pick_by_filter(self, f: |k: &K, v: &V| -> bool) -> TreeMap<K, V> {
-        let mut picked = TreeMap::new();
+    fn pick_by_filter(self, f: |k: &K, v: &V| -> bool) -> BTreeMap<K, V> {
+        let mut picked = BTreeMap::new();
         for (key, value) in self.into_iter() {
             if f(&key, &value) { picked.insert(key, value); }
         }
         return picked;
     }
 
-    fn omit(self, keys: &Vec<K>) -> TreeMap<K, V> {
-        let mut omitted = TreeMap::new();
+    fn omit(self, keys: &Vec<K>) -> BTreeMap<K, V> {
+        let mut omitted = BTreeMap::new();
         for (key, value) in self.into_iter() {
             if ! keys.contains(&key) { omitted.insert(key, value); }
         }
         return omitted;
     }
 
-    fn omit_by_filter(self, f: |k: &K, v: &V| -> bool) -> TreeMap<K, V> {
-        let mut omitted = TreeMap::new();
+    fn omit_by_filter(self, f: |k: &K, v: &V| -> bool) -> BTreeMap<K, V> {
+        let mut omitted = BTreeMap::new();
         for (key, value) in self.into_iter() {
             if ! f(&key, &value) { omitted.insert(key, value); }
         }
         return omitted;
     }
 
-    fn defaults(self, appends: TreeMap<K, V>) -> TreeMap<K, V> {
+    fn defaults(self, appends: BTreeMap<K, V>) -> BTreeMap<K, V> {
         let mut origin = self.clone();
         for (key, value) in appends.into_iter() {
             if ! origin.contains_key(&key) { origin.insert(key, value); }

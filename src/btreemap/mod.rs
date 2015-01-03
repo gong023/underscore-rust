@@ -1,41 +1,41 @@
-use std::collections::TreeMap;
+use std::collections::BTreeMap;
 
 pub mod expands;
 
-/// UnderscoreTreeMap expands TreeMap
+/// BTreeMapU expands BTreeMap
 /// # Example
 ///
 /// ```
-/// pub use underscore::vec::TreeMapU;
+/// pub use underscore::vec::BTreeMapU;
 /// ```
-pub trait TreeMapU<K, V> {
-    /// Returns a copy of the treemap where the keys have become the values and the values the keys.
+pub trait BTreeMapU<K, V> {
+    /// Returns a copy of the BTreeMap where the keys have become the values and the values the keys.
     /// # Example
     ///
     /// ```
-    /// let mut sample = TreeMap::new();
+    /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
     ///
     /// let inverted = sample.invert();
-    /// // => TreeMap { 1u: 1i, 2u: 2i }
+    /// // => BTreeMap { 1u: 1i, 2u: 2i }
     /// ```
-    fn invert(self) -> TreeMap<V, K>;
+    fn invert(self) -> BTreeMap<V, K>;
 
-    /// Return a copy of the Treemap, filtered to only have values for the whitelisted keys.
+    /// Return a copy of the BTreeMap, filtered to only have values for the whitelisted keys.
     /// # Example
     ///
     /// ```
-    /// let mut sample = TreeMap::new();
+    /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
     ///
     /// let picked = sample.pick(&vec!(1i));
-    /// // => TreeMap { 1i: 1u }
+    /// // => BTreeMap { 1i: 1u }
     /// ```
-    fn pick(self, keys: &Vec<K>) -> TreeMap<K, V>;
+    fn pick(self, keys: &Vec<K>) -> BTreeMap<K, V>;
 
-    /// Return a copy of the treemap, filtered to only have values for the vector whitelisted keys.
+    /// Return a copy of the BTreeMap, filtered to only have values for the vector whitelisted keys.
     /// pick_by_filter filters keys to pick by function.
     /// # Example
     ///
@@ -46,29 +46,29 @@ pub trait TreeMapU<K, V> {
     ///     return false;
     /// }
     ///
-    /// let mut sample = TreeMap::new();
+    /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
     ///
     /// let picked = sample.pick_by_filter(sample_filter);
-    /// // => TreeMap { 1i: 1u }
+    /// // => BTreeMap { 1i: 1u }
     /// ```
-    fn pick_by_filter(self, f: |k: &K, v: &V| -> bool) -> TreeMap<K, V>;
+    fn pick_by_filter(self, f: |k: &K, v: &V| -> bool) -> BTreeMap<K, V>;
 
-    /// Return a copy of the treemap, filtered to omit the blacklisted keys (or array of keys).
+    /// Return a copy of the BTreeMap, filtered to omit the blacklisted keys (or array of keys).
     /// omit_by_filter filters keys to pick by function.
     ///
     /// ```
-    /// let mut sample = TreeMap::new();
+    /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
     ///
     /// let omitted = sample.omit(&vec!(1i));
-    /// // => TreeMap { 2i: 2u }
+    /// // => BTreeMap { 2i: 2u }
     /// ```
-    fn omit(self, keys: &Vec<K>) -> TreeMap<K, V>;
+    fn omit(self, keys: &Vec<K>) -> BTreeMap<K, V>;
 
-    /// Return a copy of the treemap, filtered to omit the blacklisted keys (or array of keys).
+    /// Return a copy of the BTreeMap, filtered to omit the blacklisted keys (or array of keys).
     /// omit_by_filter filters keys to pick by function.
     /// # Example
     ///
@@ -79,37 +79,37 @@ pub trait TreeMapU<K, V> {
     ///     return false;
     /// }
     ///
-    /// let mut sample = TreeMap::new();
+    /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
     ///
     /// let omitted = sample.omit_by_filter(sample_filter);
-    /// // => TreeMap { 1u: 1i }
+    /// // => BTreeMap { 1u: 1i }
     /// ```
-    fn omit_by_filter(self, f: |k: &K, v: &V| -> bool) -> TreeMap<K, V>;
+    fn omit_by_filter(self, f: |k: &K, v: &V| -> bool) -> BTreeMap<K, V>;
 
-    /// Fill in undefined properties in treemap with the first value present in the following list of defaults objects.
+    /// Fill in undefined properties in BTreeMap with the first value present in the following list of defaults objects.
     /// # Example
     ///
     /// ```
-    /// let mut origin = TreeMap::new();
+    /// let mut origin = BTreeMap::new();
     /// origin.insert(1i, 1u);
     /// origin.insert(2i, 2u);
     ///
-    /// let mut appends = TreeMap::new();
+    /// let mut appends = BTreeMap::new();
     /// appends.insert(1i, 10000u);
     /// appends.insert(3i, 3u);
     ///
     /// let defaults = origin.defaults(appends);
-    /// // => TreeMap { 1i: 1u, 2i: 2u, 3i: 3u }
+    /// // => BTreeMap { 1i: 1u, 2i: 2u, 3i: 3u }
     /// ```
-    fn defaults(self, appends: TreeMap<K, V>) -> TreeMap<K, V>;
+    fn defaults(self, appends: BTreeMap<K, V>) -> BTreeMap<K, V>;
 
-    /// Convert a treemap into a vector of (key, value) tuple pairs.
+    /// Convert a BTreeMap into a vector of (key, value) tuple pairs.
     /// # Example
     ///
     /// ```
-    /// let mut sample = TreeMap::new();
+    /// let mut sample = BTreeMap::new();
     /// sample.insert(1i, 1u);
     /// sample.insert(2i, 2u);
     ///

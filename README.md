@@ -17,7 +17,7 @@ assert_eq!(1i, *sample.first().unwrap());
 ```
 
 ```rust
-pub use __::vec::UnderscoreHashMap;
+pub use underscore::hashmap::HashMapU;
 
 let mut sample = HashMap::new();
 sample.insert(1i, 1u);
@@ -27,16 +27,16 @@ let inverted = sample.invert();
 ```
 
 ```rust
-pub use underscore::vec::TreeMapU;
+pub use underscore::vec::BTreeMapU;
 
-let mut sample = TreeMap::new();
+let mut sample = BTreeMap::new();
 sample.insert(1i, 1u);
 sample.insert(2i, 2u);
 let inverted = sample.invert();
-// => TreeMap { 1u: 1i, 2u: 2i }
+// => BTreeMap { 1u: 1i, 2u: 2i }
 ```
 
-underscore-rust now expands only `Vec`, `HashMap`, `TreeMap`.
+underscore-rust now expands only `Vec`, `HashMap`, `BTreeMap`.
 
 # document
 
@@ -85,11 +85,11 @@ rust already has many functions of underscore.js at std library. If you are look
 - size
  - [std::collections::Collection::len](http://doc.rust-lang.org/nightly/std/collections/trait.Collection.html#tymethod.len)
 - keys
- - [std::collections::HashMap::keys](http://doc.rust-lang.org/nightly/collections/treemap/struct.TreeMap.html#method.keys)
+ - [collections::btree::map::BTreeMap::keys](http://doc.rust-lang.org/nightly/collections/struct.BTreeMap.html#method.keys)
 - values
- - [std::collections::HashMap::values](http://doc.rust-lang.org/nightly/collections/treemap/struct.TreeMap.html#method.values)
+ - [collections::BTreeMap::values](http://doc.rust-lang.org/nightly/collections/struct.BTreeMap.html#method.values)
 - has
- - [std::collections::HashMap::contains_key](http://doc.rust-lang.org/nightly/collections/treemap/struct.TreeMap.html#method.contains_key)
+ - [collections::BTreeMap::contains_key](http://doc.rust-lang.org/nightly/collections/struct.BTreeMap.html#method.contains_key)
 
 underscore-rust appends below functions.
 

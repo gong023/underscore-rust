@@ -2,9 +2,9 @@ extern crate underscore;
 
 use underscore::vec::VecU;
 use underscore::hashmap::HashMapU;
-use underscore::treemap::TreeMapU;
+use underscore::btreemap::BTreeMapU;
 use std::collections::HashMap;
-use std::collections::TreeMap;
+use std::collections::BTreeMap;
 
 #[test]
 fn test_vec_first() {
@@ -149,7 +149,7 @@ fn test_hashmap_defaults() {
 
 #[test]
 fn test_treemap_invert() {
-    let mut sample = TreeMap::new();
+    let mut sample = BTreeMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     let inverted = sample.invert();
@@ -162,7 +162,7 @@ fn test_treemap_invert() {
 
 #[test]
 fn test_treemap_pick() {
-    let mut sample = TreeMap::new();
+    let mut sample = BTreeMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     let v = vec!(1i);
@@ -174,7 +174,7 @@ fn test_treemap_pick() {
 
 #[test]
 fn test_treemap_pick_by_filter() {
-    let mut sample = TreeMap::new();
+    let mut sample = BTreeMap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     let picked = sample.pick_by_filter(sample_filter);
@@ -185,7 +185,7 @@ fn test_treemap_pick_by_filter() {
 
 #[test]
 fn test_treemap_omit() {
-    let mut sample = TreeMap::new();
+    let mut sample = BTreemap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     let omitted = sample.omit(&vec!(1i));
@@ -196,7 +196,7 @@ fn test_treemap_omit() {
 
 #[test]
 fn test_treemap_omit_by_filter() {
-    let mut sample = TreeMap::new();
+    let mut sample = BTreemap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     let omitted = sample.omit_by_filter(sample_filter);
@@ -207,11 +207,11 @@ fn test_treemap_omit_by_filter() {
 
 #[test]
 fn test_treemap_defaults() {
-    let mut origin = TreeMap::new();
+    let mut origin = BTreemap::new();
     origin.insert(1i, 1u);
     origin.insert(2i, 2u);
 
-    let mut appends = TreeMap::new();
+    let mut appends = BTreemap::new();
     appends.insert(1i, 10000u);
     appends.insert(3i, 3u);
 
@@ -225,7 +225,7 @@ fn test_treemap_defaults() {
 #[test]
 #[allow(deprecated)]
 fn test_treemap_pairs() {
-    let mut sample = TreeMap::new();
+    let mut sample = BTreemap::new();
     sample.insert(1i, 1u);
     sample.insert(2i, 2u);
     sample.insert(3i, 3u);
