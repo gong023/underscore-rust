@@ -7,7 +7,6 @@ script:
 - cargo build -v
 - cargo test -v
 - cargo doc -v
-- cp -r target/doc doc
 after_success: |
   [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
