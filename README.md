@@ -42,7 +42,7 @@ underscore-rust now expands only `Vec`, `HashMap`, `BTreeMap`.
 
 detail document is here.
 
-- http://www.rust-ci.org/gong023/underscore-rust/doc/underscore/
+- http://gong023.github.io/underscore-rust/underscore/index.html
 
 # std library
 
