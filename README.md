@@ -10,14 +10,14 @@ underscore-rust is utility library for rust. Inspired by [underscore.js](http://
 underscore-rust expands std library. You can use the same as standard library.
 
 ```rust
-pub use underscore::vec::VecU;
+use underscore::vec::VecU;
 
 let sample = vec!(1i, 2, 3);
 assert_eq!(1i, *sample.first().unwrap());
 ```
 
 ```rust
-pub use underscore::hashmap::HashMapU;
+use underscore::hashmap::HashMapU;
 
 let mut sample = HashMap::new();
 sample.insert(1i, 1u);
@@ -27,7 +27,7 @@ let inverted = sample.invert();
 ```
 
 ```rust
-pub use underscore::vec::BTreeMapU;
+use underscore::btreemap::BTreeMapU;
 
 let mut sample = BTreeMap::new();
 sample.insert(1i, 1u);

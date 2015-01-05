@@ -1,11 +1,20 @@
 language: rust
 env:
   global:
-    - secure: ZErwEGNao3SD9q3M1m1/MOPuYJ0Ihd7JoULM0fgg8OkdFAwm0GCWTsdyhETqfLjnNmsyIc0YR/s4/LxZVRHpnsfg1osYQ1S96E2oSj9swWOBJaUF9dqVrL3oQ6d3APTzoDMICIlDJoLfEaUJ9vy6Mm3whOAu3Xj0jCsZk9vdQ2o=
+  - secure: ZErwEGNao3SD9q3M1m1/MOPuYJ0Ihd7JoULM0fgg8OkdFAwm0GCWTsdyhETqfLjnNmsyIc0YR/s4/LxZVRHpnsfg1osYQ1S96E2oSj9swWOBJaUF9dqVrL3oQ6d3APTzoDMICIlDJoLfEaUJ9vy6Mm3whOAu3Xj0jCsZk9vdQ2o=
+  - secure: hPcxu3YJ4y9estcXebgbjZDIXQqSW5Mp8pZuOdpBjPuJPIQEsGEI1TUUZIR+5aAG+I1I0B2mDjCr9IkEnHZLRPUzzRT9tUYKlP5Pkd52UVP5q2o/WTJZxj9c78ociBC1EWnQC2VoU+COn7Jc+0Rp1KP40TkPmY5zU5OysmlKKjQ=
 script:
-  - cargo build -v
-  - cargo test -v
-  - cargo doc -v
-  - mv target/doc doc
-after_script:
-  - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
+- cargo build -v
+- cargo test -v
+- cargo doc -v
+- cp -r target/doc doc
+after_success: |
+  [ $TRAVIS_BRANCH = master ] &&
+  [ $TRAVIS_PULL_REQUEST = false ] &&
+  echo '<meta http-equiv=refresh content=0;url=underscore/index.html>' > target/doc/index.html &&
+  sudo pip install ghp-import &&
+  ghp-import -n target/doc &&
+  git push -fq https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages &&
+  rm target/doc/index.html &&
+  mv target/doc . &&
+  (curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh)
