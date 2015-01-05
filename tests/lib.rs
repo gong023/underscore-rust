@@ -223,7 +223,6 @@ fn test_treemap_defaults() {
 }
 
 #[test]
-#[allow(deprecated)]
 fn test_treemap_pairs() {
     let mut sample = BTreeMap::new();
     sample.insert(1i, 1u);
@@ -231,7 +230,7 @@ fn test_treemap_pairs() {
     sample.insert(3i, 3u);
     let pairs = sample.pairs();
 
-    assert_eq!(3u, pairs.len());
-    assert_eq!(1i, *pairs[0].val0());
-    assert_eq!(1u, *pairs[0].val1());
+    assert_eq!((&1i, &1u), pairs[0]);
+    assert_eq!((&2i, &2u), pairs[1]);
+    assert_eq!((&3i, &3u), pairs[2]);
 }
