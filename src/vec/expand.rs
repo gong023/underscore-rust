@@ -3,7 +3,7 @@ use std::collections::BTreeMap;
 
 impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
     fn first<'a>(&'a self) -> Option<&'a T> {
-        self.as_slice().first()
+        self[..].first()
     }
 
     fn without(self, values: &Vec<T>) -> Vec<T> {
