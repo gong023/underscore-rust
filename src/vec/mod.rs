@@ -56,7 +56,7 @@ pub trait VecU<T> {
     /// let sample = vec!(3i, 2, 1);
     /// assert_eq!(2u, sample.index_of(&1i).unwrap());
     /// ```
-    fn index_of(&self, value: &T) -> Option<uint>;
+    fn index_of(&self, value: &T) -> Option<usize>;
 
     /// Returns the Option with index which value can be found in the vector.
     /// # Example
@@ -66,7 +66,7 @@ pub trait VecU<T> {
     /// let sample = vec!(1i, 2, 3, 1);
     /// assert_eq!(3u, sample.last_index_of(&1i).unwrap());
     /// ```
-    fn last_index_of(&self, value: &T) -> Option<uint>;
+    fn last_index_of(&self, value: &T) -> Option<usize>;
 
     /// Converts vector into BTreeMap.
     /// # Example
