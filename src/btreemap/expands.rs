@@ -39,7 +39,7 @@ impl<K: Ord + Clone, V: Ord + Clone> BTreeMapU<K, V> for BTreeMap<K, V> {
         return omitted;
     }
 
-    fn omit_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> HashMap<K, V> {
+    fn omit_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> BTreeMap<K, V> {
         let mut omitted = BTreeMap::new();
         for (key, value) in self.into_iter() {
             if ! f(&key, &value) { omitted.insert(key, value); }

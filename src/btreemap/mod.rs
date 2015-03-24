@@ -96,7 +96,7 @@ pub trait BTreeMapU<K, V> {
     /// let omitted = sample.omit_by_filter(sample_filter);
     /// // => BTreeMap { 1u: 1i }
     /// ```
-    fn omit_by_Filter<F: Fn(&K, &V) -> bool>(self, f: F) -> HashMap<K, V>;
+    fn omit_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> BTreeMap<K, V>;
 
     /// Fill in undefined properties in BTreeMap with the first value present in the following list of defaults objects.
     /// # Example
