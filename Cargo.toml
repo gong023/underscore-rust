@@ -1,6 +1,6 @@
 [package]
 
-name = "underscore-rust"
+name = "underscore"
 version = "0.0.21"
 authors = ["gong023 <gon.gong.gone@gmail.com>"]
 
