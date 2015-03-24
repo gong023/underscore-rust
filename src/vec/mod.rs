@@ -87,6 +87,6 @@ pub trait VecU<T> {
     /// let sample = vec!(1i, 2, 10);
     /// assert_eq!(vec!(10i), sample.reject(|&v| v < 10));
     /// ```
-    fn reject(self, f: |value: &T| -> bool) -> Vec<T>;
+    fn reject<F: Fn(&T) -> bool>(self, f: F) -> Vec<T>;
 }
 

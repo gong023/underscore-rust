@@ -63,7 +63,7 @@ impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
         return obj;
     }
 
-    fn reject(self, f: |value: &T| -> bool) -> Vec<T> {
+    fn reject<F: Fn(&T) -> bool>(self, f: F) -> Vec<T> {
         let mut rejected = Vec::new();
         for element in self.into_iter() {
             if ! f(&element) { rejected.push(element) }
