@@ -3,7 +3,7 @@ use std::collections::BTreeMap;
 
 impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
     fn first<'a>(&'a self) -> Option<&'a T> {
-        self.as_slice().first()
+        self[..].first()
     }
 
     fn without(self, values: &Vec<T>) -> Vec<T> {
@@ -34,8 +34,8 @@ impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
         return uniq;
     }
 
-    fn index_of(&self, value: &T) -> Option<uint> {
-        let mut index = 0u;
+    fn index_of(&self, value: &T) -> Option<usize> {
+        let mut index = 0usize;
         for element in self.iter() {
             if element.eq(value) { return Some(index) }
             index += 1;
@@ -44,7 +44,7 @@ impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
         None
     }
 
-    fn last_index_of(&self, value: &T) -> Option<uint> {
+    fn last_index_of(&self, value: &T) -> Option<usize> {
         let mut i = self.len();
         loop {
             i -= 1;
@@ -57,13 +57,13 @@ impl<T: PartialEq + Clone + Ord> VecU<T> for Vec<T>{
     // FIXME: If values are shorter than keys, insert None.
     fn object<V: Clone>(self, value: Vec<V>) -> BTreeMap<T, V> {
         let mut obj = BTreeMap::new();
-        for i in range(0u, self.len() - 1) {
+        for i in (0usize..self.len() - 1) {
             obj.insert(self[i].clone(), value[i].clone());
         }
         return obj;
     }
 
-    fn reject(self, f: |value: &T| -> bool) -> Vec<T> {
+    fn reject<F: Fn(&T) -> bool>(self, f: F) -> Vec<T> {
         let mut rejected = Vec::new();
         for element in self.into_iter() {
             if ! f(&element) { rejected.push(element) }

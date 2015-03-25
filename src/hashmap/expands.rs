@@ -23,7 +23,7 @@ impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> HashMapU<K, V> for HashMap<
         return picked;
     }
 
-    fn pick_by_filter(self, f: |k: &K, v: &V| -> bool) -> HashMap<K, V> {
+    fn pick_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> HashMap<K, V> {
         let mut picked = HashMap::new();
         for key in self.keys() {
             let cp_key = key.clone();
@@ -42,7 +42,7 @@ impl<'a, K: Eq + Hash + Clone, V: Eq + Hash + Clone> HashMapU<K, V> for HashMap<
         return omitted;
     }
 
-    fn omit_by_filter(self, f: |k: &K, v: &V| -> bool) -> HashMap<K, V> {
+    fn omit_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> HashMap<K, V> {
         let mut omitted = HashMap::new();
         for key in self.keys() {
             let cp_key = key.clone();

@@ -57,7 +57,7 @@ pub trait BTreeMapU<K, V> {
     /// let picked = sample.pick_by_filter(sample_filter);
     /// // => BTreeMap { 1i: 1u }
     /// ```
-    fn pick_by_filter(self, f: |k: &K, v: &V| -> bool) -> BTreeMap<K, V>;
+    fn pick_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> BTreeMap<K,V>;
 
     /// Return a copy of the BTreeMap, filtered to omit the blacklisted keys (or array of keys).
     /// omit_by_filter filters keys to pick by function.
@@ -96,7 +96,7 @@ pub trait BTreeMapU<K, V> {
     /// let omitted = sample.omit_by_filter(sample_filter);
     /// // => BTreeMap { 1u: 1i }
     /// ```
-    fn omit_by_filter(self, f: |k: &K, v: &V| -> bool) -> BTreeMap<K, V>;
+    fn omit_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> BTreeMap<K, V>;
 
     /// Fill in undefined properties in BTreeMap with the first value present in the following list of defaults objects.
     /// # Example

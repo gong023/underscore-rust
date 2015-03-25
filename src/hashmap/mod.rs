@@ -57,7 +57,7 @@ pub trait HashMapU<K, V> {
     /// let picked = sample.pick_by_filter(sample_filter);
     /// // => HashMap { 1u: 1i }
     /// ```
-    fn pick_by_filter(self, f: |k: &K, v: &V| -> bool) -> HashMap<K, V>;
+    fn pick_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> HashMap<K, V>;
 
     /// Return a copy of the hashmap, filtered to omit the blacklisted keys (or array of keys).
     /// # Example
@@ -96,7 +96,7 @@ pub trait HashMapU<K, V> {
     /// let inverted = sample.omit_by_filter(sample_filter);
     /// // => HashMap { 2u: 2i }
     /// ```
-    fn omit_by_filter(self, f: |k: &K, v: &V| -> bool) -> HashMap<K, V>;
+    fn omit_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> HashMap<K, V>;
 
     /// Fill in undefined properties in hashmap with the first value present in the following list of defaults objects.
     /// # Example
