@@ -9,8 +9,8 @@ pub trait VecU<T> {
     /// ```
     /// use underscore::vec::VecU;
     ///
-    /// let sample = vec!(1i, 2, 3);
-    /// assert_eq!(1i, *sample.first().unwrap());
+    /// let sample = vec!(1isize, 2, 3);
+    /// assert_eq!(1isize, *sample.first().unwrap());
     /// ```
     fn first<'a>(&'a self) -> Option<&'a T>;
 
@@ -19,8 +19,8 @@ pub trait VecU<T> {
     /// ```
     /// use underscore::vec::VecU;
     ///
-    /// let sample = vec!(1i, 2i, 2i);
-    /// assert_eq!(vec!(2i, 2i), sample.without(&vec!(1i)));
+    /// let sample = vec!(1isize, 2isize, 2isize);
+    /// assert_eq!(vec!(2isize, 2isize), sample.without(&vec!(1isize)));
     /// ```
     fn without(self, values: &Vec<T>) -> Vec<T>;
 
@@ -30,8 +30,8 @@ pub trait VecU<T> {
     /// ```
     /// use underscore::vec::VecU;
     ///
-    /// let sample = vec!(1i, 2, 3);
-    /// assert_eq!(vec!(2i, 3), sample.intersection(&vec!(2i, 3, 4)));
+    /// let sample = vec!(1isize, 2, 3);
+    /// assert_eq!(vec!(2isize, 3), sample.intersection(&vec!(2isize, 3, 4)));
     /// ```
     fn intersection(self, intersec: &Vec<T>) -> Vec<T>;
 
@@ -41,8 +41,8 @@ pub trait VecU<T> {
     /// ```
     /// use underscore::vec::VecU;
     ///
-    /// let sample = vec!(0i, 1, 1, 1, 2, 2, 2, 3);
-    /// assert_eq!(vec!(0i, 1, 2, 3), sample.uniq());
+    /// let sample = vec!(0isize, 1, 1, 1, 2, 2, 2, 3);
+    /// assert_eq!(vec!(0isize, 1, 2, 3), sample.uniq());
     /// ```
     fn uniq(self) -> Vec<T>;
 
@@ -53,8 +53,8 @@ pub trait VecU<T> {
     /// ```
     /// use underscore::vec::VecU;
     ///
-    /// let sample = vec!(3i, 2, 1);
-    /// assert_eq!(2u, sample.index_of(&1i).unwrap());
+    /// let sample = vec!(3isize, 2, 1);
+    /// assert_eq!(2usize, sample.index_of(&1isize).unwrap());
     /// ```
     fn index_of(&self, value: &T) -> Option<usize>;
 
@@ -63,8 +63,8 @@ pub trait VecU<T> {
     /// ```
     /// use underscore::vec::VecU;
     ///
-    /// let sample = vec!(1i, 2, 3, 1);
-    /// assert_eq!(3u, sample.last_index_of(&1i).unwrap());
+    /// let sample = vec!(1isize, 2, 3, 1);
+    /// assert_eq!(3usize, sample.last_index_of(&1isize).unwrap());
     /// ```
     fn last_index_of(&self, value: &T) -> Option<usize>;
 
@@ -73,8 +73,8 @@ pub trait VecU<T> {
     /// ```
     /// use underscore::vec::VecU;
     ///
-    /// let obj = vec!(0u, 1, 2, 3).object(vec!(0i, 1, 2, 3));
-    /// //=> BTreeMap<0u, 0i><1u, 1i>...
+    /// let obj = vec!(0usize, 1, 2, 3).object(vec!(0isize, 1, 2, 3));
+    /// //=> BTreeMap<0usize, 0isize><1u, 1isize>...
     /// ```
     fn object<V: Clone>(self, value: Vec<V>) -> BTreeMap<T, V>;
 
@@ -84,8 +84,8 @@ pub trait VecU<T> {
     /// ```
     /// use underscore::vec::VecU;
     ///
-    /// let sample = vec!(1i, 2, 10);
-    /// assert_eq!(vec!(10i), sample.reject(|&v| v < 10));
+    /// let sample = vec!(1isize, 2, 10);
+    /// assert_eq!(vec!(10isize), sample.reject(|&v| v < 10));
     /// ```
     fn reject<F: Fn(&T) -> bool>(self, f: F) -> Vec<T>;
 }

@@ -72,7 +72,7 @@ fn test_hashmap_invert() {
 
     for x in vec!(1usize, 2).iter() {
         assert!(inverted.contains_key(x));
-        assert_eq!(*x as isize, inverted[*x]);
+        assert_eq!(*x as isize, inverted[x]);
     }
 }
 
@@ -84,7 +84,7 @@ fn test_hashmap_pick() {
     let picked = sample.pick(vec!(1isize));
 
     for key in picked.keys() {
-        assert_eq!(1usize, picked[*key]);
+        assert_eq!(1usize, picked[key]);
     }
 }
 
@@ -102,7 +102,7 @@ fn test_hashmap_pick_by_filter() {
     let picked = sample.pick_by_filter(sample_filter);
 
     for key in picked.keys() {
-        assert_eq!(1usize, picked[*key]);
+        assert_eq!(1usize, picked[key]);
     }
 }
 
@@ -114,7 +114,7 @@ fn test_hashmap_omit() {
     let omitted = sample.omit(vec!(1isize));
 
     for key in omitted.keys() {
-        assert_eq!(2usize, omitted[*key]);
+        assert_eq!(2usize, omitted[key]);
     }
 }
 

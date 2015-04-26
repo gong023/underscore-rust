@@ -12,11 +12,11 @@ pub trait HashMapU<K, V> {
     /// use underscore::hashmap::HashMapU;
     ///
     /// let mut sample = HashMap::new();
-    /// sample.insert(1i, 1u);
-    /// sample.insert(2i, 2u);
+    /// sample.insert(1isize, 1usize);
+    /// sample.insert(2isize, 2usize);
     ///
     /// let inverted = sample.invert();
-    /// // => HashMap { 1u: 1i, 2u: 2i }
+    /// // => HashMap { 1usize: 1isize, 2usize: 2isize }
     /// ```
     fn invert(self) -> HashMap<V, K>;
 
@@ -28,11 +28,11 @@ pub trait HashMapU<K, V> {
     /// use underscore::hashmap::HashMapU;
     ///
     /// let mut sample = HashMap::new();
-    /// sample.insert(1i, 1u);
-    /// sample.insert(2i, 2u);
+    /// sample.insert(1isize, 1usize);
+    /// sample.insert(2isize, 2usize);
     ///
-    /// let picked = sample.pick(vec!(1i));
-    /// // => HashMap { 1u: 1i }
+    /// let picked = sample.pick(vec!(1isize));
+    /// // => HashMap { 1usize: 1isize }
     /// ```
     fn pick(self, keys: Vec<K>) -> HashMap<K, V>;
 
@@ -45,17 +45,17 @@ pub trait HashMapU<K, V> {
     /// use underscore::hashmap::HashMapU;
     ///
     /// #[allow(unused_variable)]
-    /// fn sample_filter(x: &int, y: &uint) -> bool {
+    /// fn sample_filter(x: &isize, y: &usize) -> bool {
     ///     if *x == 1 { return true; }
     ///     return false;
     /// }
     ///
     /// let mut sample = HashMap::new();
-    /// sample.insert(1i, 1u);
-    /// sample.insert(2i, 2u);
+    /// sample.insert(1isize, 1usize);
+    /// sample.insert(2isize, 2usize);
     ///
     /// let picked = sample.pick_by_filter(sample_filter);
-    /// // => HashMap { 1u: 1i }
+    /// // => HashMap { 1usize: 1isize }
     /// ```
     fn pick_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> HashMap<K, V>;
 
@@ -67,11 +67,11 @@ pub trait HashMapU<K, V> {
     /// use underscore::hashmap::HashMapU;
     ///
     /// let mut sample = HashMap::new();
-    /// sample.insert(1i, 1u);
-    /// sample.insert(2i, 2u);
+    /// sample.insert(1isize, 1usize);
+    /// sample.insert(2isize, 2usize);
     ///
-    /// let omitted = sample.omit(vec!(1i));
-    /// // => HashMap { 2u: 2i }
+    /// let omitted = sample.omit(vec!(1isize));
+    /// // => HashMap { 2usize: 2isize }
     /// ```
     fn omit(self, keys: Vec<K>) -> HashMap<K, V>;
 
@@ -84,17 +84,17 @@ pub trait HashMapU<K, V> {
     /// use underscore::hashmap::HashMapU;
     ///
     /// #[allow(unused_variable)]
-    /// fn sample_filter(x: &int, y: &uint) -> bool {
+    /// fn sample_filter(x: &isize, y: &usize) -> bool {
     ///     if *x == 1 { return true; }
     ///     return false;
     /// }
     ///
     /// let mut sample = HashMap::new();
-    /// sample.insert(1i, 1u);
-    /// sample.insert(2i, 2u);
+    /// sample.insert(1isize, 1usize);
+    /// sample.insert(2isize, 2usize);
     ///
     /// let inverted = sample.omit_by_filter(sample_filter);
-    /// // => HashMap { 2u: 2i }
+    /// // => HashMap { 2usize: 2isize }
     /// ```
     fn omit_by_filter<F: Fn(&K, &V) -> bool>(self, f: F) -> HashMap<K, V>;
 
@@ -106,15 +106,15 @@ pub trait HashMapU<K, V> {
     /// use underscore::hashmap::HashMapU;
     ///
     /// let mut origin = HashMap::new();
-    /// origin.insert(1i, 1u);
-    /// origin.insert(2i, 2u);
+    /// origin.insert(1isize, 1usize);
+    /// origin.insert(2isize, 2usize);
     ///
     /// let mut appends = HashMap::new();
-    /// appends.insert(1i, 10000u);
-    /// appends.insert(3i, 3u);
+    /// appends.insert(1isize, 10000usize);
+    /// appends.insert(3isize, 3usize);
     ///
     /// let defaults = origin.defaults(appends);
-    /// // => HashMap { 1i: 1u, 2i: 2u, 3i: 3u }
+    /// // => HashMap { 1isize: 1usize, 2isize: 2usize, 3isize: 3usize }
     /// ```
     fn defaults(self, appends: HashMap<K, V>) -> HashMap<K, V>;
 
