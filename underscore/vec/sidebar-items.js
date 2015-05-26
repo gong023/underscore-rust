@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["expand",""]],"trait":[["VecU","UnderscoreVec expands collections::vec::Vec"]]});
